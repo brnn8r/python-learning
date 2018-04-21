@@ -35,7 +35,7 @@ def predicit_digit(digits, digit_pos=1, image_size=3):
 def main():
     digits = datasets.load_digits()
 
-    predicit_digit(digits, digit_pos=207, image_size=4)
+    predicit_digit(digits, digit_pos=88, image_size=4)
 
 
 if __name__ == "__main__":
