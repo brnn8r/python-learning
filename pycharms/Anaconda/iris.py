@@ -26,20 +26,21 @@ def main():
     iris_X = iris.data
     iris_y = iris.target
 
-    iris_X_train, iris_y_train, iris_X_test, iris_y_test = get_test_train_split(iris_X, iris_y, split_percentage=0.25)
+    iris_X_train, iris_y_train, iris_X_test, iris_y_test = get_test_train_split(iris_X, iris_y, split_percentage=0.15)
 
     knn_model = KNeighborsClassifier()
 
     knn_model.fit(iris_X_train, iris_y_train)
 
-    predictions = knn_model.predict(iris_X_test)
+    predictions = list(enumerate(knn_model.predict(iris_X_test)))
+    actual_values = list(enumerate(iris_y_test))
 
-    discrepancies = [(pos, prediction, iris_y_test[pos]) for pos, prediction in enumerate(predictions)
-                     if prediction != iris_y_test[pos]]
+    discrepancies = ((pos, prediction, iris_y_test[pos]) for pos, prediction in predictions
+                     if prediction != iris_y_test[pos])
     for pos, prediction, actual in discrepancies:
         print(f"predicited {prediction} at position {pos} but was actually {actual}")
 
-    print(f"predicted = {predictions}\nactual = {iris_y_test}")
+    print(f"predicted\t = {predictions}\nactual\t\t = {actual_values}")
 
 
 if __name__ == "__main__":
