@@ -1,17 +1,8 @@
-def recursive_reverse_string(s: str):
-    def tail_helper(inner_s: str, accumulated: str):
-        if len(inner_s) <= 0:
-            return accumulated
-        return tail_helper(inner_s[:-1], accumulated + inner_s[-1:])
+from Utilities.Utils import is_main, reverse_string
 
-    return tail_helper(s, "")
+name = __name__
 
-
-def reverse_string(s: str):
-    return s[::-1]
-
-
-if __name__ == "__main__":
+if is_main(name):
     me = "steve"
     print(f"Hello {reverse_string(me)}")
 
