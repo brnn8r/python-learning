@@ -1,38 +1,31 @@
 import numpy as np
 from sklearn import datasets
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestRegressor
+from sklearn import svm
+from sklearn.model_selection import train_test_split
 from datetime import datetime
-
-
-def get_test_train_split(X, y, seed=None, split_percentage=0.1):
-
-    seed = seed or datetime.now().microsecond
-    np.random.seed(seed)
-
-    len_X = len(X)
-    indicies = np.random.permutation(len_X)
-    test_partition_index = int(-len_X * split_percentage)
-
-    X_train = X[indicies[:test_partition_index]]
-    y_train = y[indicies[:test_partition_index]]
-    X_test = X[indicies[test_partition_index:]]
-    y_test = y[indicies[test_partition_index:]]
-
-    return (X_train, y_train, X_test, y_test)
-
+from sklearn.metrics import accuracy_score
 
 def main():
     iris = datasets.load_iris()
     iris_X = iris.data
     iris_y = iris.target
 
-    iris_X_train, iris_y_train, iris_X_test, iris_y_test = get_test_train_split(iris_X, iris_y, split_percentage=0.15)
+    iris_X_train, iris_X_test, iris_y_train, iris_y_test = train_test_split(iris_X, iris_y,
+                                test_size=0.25, random_state=datetime.now().microsecond)
 
-    knn_model = KNeighborsClassifier()
+    #model = KNeighborsClassifier()
+    #model = svm.SVC(kernel='poly', degree=5)
+    model = svm.LinearSVC()
 
-    knn_model.fit(iris_X_train, iris_y_train)
+    model.fit(iris_X_train, iris_y_train)
 
-    predictions = list(enumerate(knn_model.predict(iris_X_test)))
+    test_result = model.predict(iris_X_test)
+
+    print(f"Model accuracy = {round(accuracy_score(test_result, iris_y_test)*100,2)}%")
+
+    predictions = list(enumerate(test_result ))
     actual_values = list(enumerate(iris_y_test))
 
     discrepancies = ((pos, prediction, iris_y_test[pos]) for pos, prediction in predictions
