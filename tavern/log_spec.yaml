@@ -1,0 +1,19 @@
+# log_spec.yaml
+---
+version: 1
+formatters:
+    default:
+        class: logging.Formatter
+        format: "%(asctime)s %(processName)-10s %(name)s %(levelname)-8s %(message)s"
+
+handlers:
+    file:
+        formatter: default
+        class: logging.FileHandler
+        filename: test_results.err
+        mode: w
+
+loggers:
+    tavern:
+        handlers:
+            - file
