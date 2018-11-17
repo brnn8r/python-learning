@@ -15,7 +15,7 @@ stages:
     response:
       status_code: 200
       body:
-        ids: 1
+        id: 1
         $ext:
           function: tavern_utils:save_response
 

@@ -1,1 +1,1 @@
-py.test --tb=line -x -v test_minimal.tavern.yaml > test_results.log > test_results.log
+py.test --tb=line -x -v test_minimal.tavern.yaml > test_results.log

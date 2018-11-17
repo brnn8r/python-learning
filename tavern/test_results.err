@@ -1,1 +1,15 @@
-2018-11-17 14:04:47,049 MainProcess tavern.response.base ERROR    Value mismatch in body: Structure of returned data was different than expected  - Extra keys in response: {'id', 'userId', 'body', 'title'} - Keys missing from response: {'ids'} (expected = '{'ids': 1}', actual = '{'userId': 1, 'id': 1, 'title': 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit', 'body': 'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto'}')
+2018-11-17 14:06:20,053 MainProcess tavern.util.dict_util WARNING  Structure of returned data was different than expected  - Extra keys in response: {'userId', 'body', 'title'} (expected = '{'id': 1}', actual = '{'userId': 1, 'id': 1, 'title': 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit', 'body': 'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto'}')
+Traceback (most recent call last):
+  File "c:\users\sadams\documents\github\python-learning\tavern\venv\lib\site-packages\tavern\util\dict_util.py", line 259, in check_keys_match_recursive
+    assert actual_val == expected_val
+AssertionError: assert {'body': 'qui..., 'userId': 1} == {'id': 1}
+  Omitting 1 identical items, use -vv to show
+  Left contains more items:
+  {'body': 'quia et suscipit\n'
+           'suscipit recusandae consequuntur expedita et cum\n'
+           'reprehenderit molestiae ut ut quas totam\n'
+           'nostrum rerum est autem sunt rem eveniet architecto',
+   'title': 'sunt aut facere repellat provident occaecati excepturi optio '...
+  
+  ...Full output truncated (15 lines hidden), use '-vv' to show
+2018-11-17 14:06:20,828 MainProcess tavern.response.base ERROR    Value mismatch in body: Structure of returned data was different than expected  - Extra keys in response: {'userId', 'body', 'title', 'id'} - Keys missing from response: {'ids'} (expected = '{'ids': 1}', actual = '{'userId': 1, 'id': 1, 'title': 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit', 'body': 'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto'}')
