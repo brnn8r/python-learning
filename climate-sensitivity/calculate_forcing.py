@@ -29,7 +29,7 @@ def calculate_feedback_sensitivity_lambda(sensitivity: float):
 
 def calculate_forcing(current_atmospheric_co2_ppm: float, co2_delta_ppm: float, feedback_sensitivity_lambda: float) -> float:
 
-    return feedback_sensitivity_lambda * RADIATIVE_FORCING_CONSTANT * math.log(1 + co2_delta_ppm / current_atmospheric_co2_ppm)
+    return round(feedback_sensitivity_lambda * RADIATIVE_FORCING_CONSTANT * math.log(1 + co2_delta_ppm / current_atmospheric_co2_ppm), 3)
 
 
 if __name__ == "__main__":
@@ -43,4 +43,4 @@ if __name__ == "__main__":
     feedback_sensitivity_lambda = calculate_feedback_sensitivity_lambda(sensitivity)
     forcing = calculate_forcing(current_atmospheric_co2_ppm, co2_delta_ppm, feedback_sensitivity_lambda)
 
-    print(f"An increase of {co2_delta_ppm} PPM from the current {current_atmospheric_co2_ppm} PPM with an ECS of {sensitivity} degrees K will increase global mean temperatures by {forcing} degrees K")
+    print(f"An change of {co2_delta_ppm} PPM from the current {current_atmospheric_co2_ppm} PPM with an ECS of {sensitivity} degrees K will increase global mean temperatures by {forcing} degrees K")
